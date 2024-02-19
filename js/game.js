@@ -22,11 +22,17 @@ let score = 0;
 let isAccepted = true;
 
 const fetchData = async () => {
+  try {
     const response = await fetch(URL);
     const json = await response.json();
     formattedData = formatData(json.results);
     start();
+  } catch (err) {
+    loader.style.display = "none";
+    error.style.display = "block";
+  }
 };
+
 
 const start = () => {
   showQuestion();
